@@ -39,7 +39,7 @@ padding:12px;
 border-radius:12px;
 font-size:16px;
 backdrop-filter:blur(6px);
-text-align:left;  /* ровная нумерация */
+text-align:left;
 }
 button{
 margin-top:30px;
@@ -51,6 +51,10 @@ background:#ff6fa3;
 color:white;
 cursor:pointer;
 box-shadow:0 0 15px rgba(255,111,163,0.6);
+transition:0.3s;
+}
+button:hover{
+transform:scale(1.05);
 }
 .heart{
 position:absolute;
@@ -67,6 +71,7 @@ animation:fall linear infinite;
 <h1>100 причин почему я тебя люблю ❤️</h1>
 
 <div class="timer" id="timer"></div>
+
 <div class="container">
 <div class="reason">1. Ты самая красивая</div>
 <div class="reason">2. Твоя улыбка делает мой день ярче</div>
@@ -78,7 +83,7 @@ animation:fall linear infinite;
 <div class="reason">8. Ты добрая и нежная</div>
 <div class="reason">9. Ты невероятная личность</div>
 <div class="reason">10. Ты делаешь мир лучше</div>
-<div class="reason">11. Ты всегда поддерживаешь</div>
+<div class="reason">11. Ты всегда поддерживаешь меня</div>
 <div class="reason">12. Ты заставляешь меня улыбаться</div>
 <div class="reason">13. Ты умеешь слушать</div>
 <div class="reason">14. Ты искренняя</div>
@@ -170,33 +175,9 @@ animation:fall linear infinite;
 <div class="reason">100. Ты — любовь всей моей жизни</div>
 </div>
 
+<button id="loveButton">Будешь моей?</button>
+
 <script>
-function createHeart(){
-let heart=document.createElement("div")
-heart.className="heart"
-heart.innerHTML="❤️"
-heart.style.left=Math.random()*100+"vw"
-heart.style.animationDuration=(3+Math.random()*5)+"s"
-heart.style.fontSize=(20+Math.random()*20)+"px"
-document.body.appendChild(heart)
-setTimeout(()=>{heart.remove()},7000)
-}
-setInterval(createHeart,200)
-
-function loveExplosion(){
-for(let i=0;i<150;i++){
-let heart=document.createElement("div")
-heart.innerHTML="❤️"
-heart.style.position="fixed"
-heart.style.left=Math.random()*100+"vw"
-heart.style.top=Math.random()*100+"vh"
-heart.style.fontSize="30px"
-document.body.appendChild(heart)
-setTimeout(()=>{heart.remove()},3000)
-}
-alert("Я тебя очень люблю ❤️")
-}
-
 // Таймер
 const startDate = new Date("2026-02-22")
 function updateTimer(){
@@ -210,7 +191,28 @@ document.getElementById("timer").innerHTML = "Мы вместе уже ❤️ "+
 }
 setInterval(updateTimer,1000)
 updateTimer()
+
+// Летящие сердечки
+function createHeart(){
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤️"
+heart.style.left=Math.random()*100+"vw"
+heart.style.animationDuration=(3+Math.random()*5)+"s"
+heart.style.fontSize=(20+Math.random()*20)+"px"
+document.body.appendChild(heart)
+setTimeout(()=>{heart.remove()},7000)
+}
+setInterval(createHeart,200)
+
+// Кнопка "Будешь моей?"
+document.getElementById("loveButton").addEventListener("click", function(){
+this.innerText = "Ну всё теперь ты только моя"
+this.disabled = true
+})
 </script>
+
+<!-- Музыка Careless Whisper -->
 <iframe width="0" height="0" src="https://www.youtube.com/embed/izGwDsrQ1eQ?autoplay=1&loop=1&playlist=izGwDsrQ1eQ" allow="autoplay"></iframe>
 </body>
 </html>
