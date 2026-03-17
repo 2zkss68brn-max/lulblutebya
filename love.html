@@ -1,218 +1,276 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>100 причин ❤️</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Для Полинки ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
 <style>
-body{
-margin:0;
-font-family:sans-serif;
-background: linear-gradient(135deg,#1e1e2f,#6a4c93,#c9184a);
-color:white;
-text-align:center;
-padding:20px;
-}
-h1{
-font-size:28px;
-margin-bottom:10px;
-}
-.timer{
-font-size:18px;
-margin:20px auto;
-padding:15px;
-border-radius:14px;
-max-width:500px;
-background:rgba(255,255,255,0.12);
-backdrop-filter:blur(10px);
-}
-.container{
-display:grid;
-grid-template-columns:1fr;
-gap:10px;
-max-width:500px;
-margin:auto;
-}
-.reason{
-background:rgba(255,255,255,0.12);
-padding:12px;
-border-radius:12px;
-font-size:16px;
-backdrop-filter:blur(6px);
-text-align:left;
-}
-button{
-margin-top:30px;
-padding:16px 35px;
-font-size:18px;
-border:none;
-border-radius:40px;
-background:#ff6fa3;
-color:white;
-cursor:pointer;
-box-shadow:0 0 15px rgba(255,111,163,0.6);
-transition:0.3s;
-}
-button:hover{
-transform:scale(1.05);
-}
-.heart{
-position:absolute;
-font-size:22px;
-animation:fall linear infinite;
-}
-@keyframes fall{
-0%{transform:translateY(-10vh) scale(0.5);opacity:1;}
-100%{transform:translateY(110vh) scale(1.2);opacity:0;}
-}
+  body{
+    margin:0;
+    font-family:'Montserrat',sans-serif;
+    background: radial-gradient(circle at top,#1a1a2e,#3a0ca3,#ff4d6d);
+    color:#fff;
+    text-align:center;
+    padding:20px;
+    overflow-x:hidden;
+  }
+
+  /* Intro */
+  .intro{
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    background:radial-gradient(circle,#1a1a2e,#3a0ca3,#ff4d6d);
+    display:flex;justify-content:center;align-items:center;flex-direction:column;
+    z-index:2000;animation:fadeOutIntro 3.5s forwards;
+  }
+  .intro h1{font-family:'Great Vibes';font-size:52px;color:#ffd6e0;animation:zoomIn 2s ease;}
+  .intro p{margin-top:10px;color:rgba(255,214,224,0.9);}
+  @keyframes zoomIn{0%{transform:scale(0.5);opacity:0}100%{transform:scale(1);opacity:1}}
+  @keyframes fadeOutIntro{0%{opacity:1}80%{opacity:1}100%{opacity:0;pointer-events:none}}
+
+  /* Header */
+  h1.pageTitle{
+    font-family:'Great Vibes';font-size:40px;color:#ffd6e0;margin:10px 0 6px;
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{50%{transform:scale(1.05)}}
+
+  /* Timer */
+  .timer{
+    margin:14px auto;padding:12px;border-radius:18px;max-width:520px;
+    background:rgba(255,255,255,0.09);backdrop-filter:blur(10px);
+    box-shadow:0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  /* Container of reasons */
+  .container{display:grid;gap:10px;max-width:520px;margin:12px auto;padding-bottom:8px;}
+  .reason{
+    background:rgba(255,255,255,0.06);padding:12px;border-radius:14px;
+    text-align:left;font-size:16px;backdrop-filter:blur(8px);
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);opacity:0;transform:translateY(18px);
+    animation:fadeUp .5s forwards;
+  }
+  @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+  /* Button */
+  #loveButton{
+    margin:18px auto 40px;padding:16px 40px;font-size:18px;border:none;
+    border-radius:50px;background:linear-gradient(45deg,#ff4d6d,#ff85a1);
+    color:white;cursor:pointer;box-shadow:0 8px 30px rgba(255,77,109,0.35);
+  }
+
+  /* Overlay final */
+  .overlay{
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,0.9);display:flex;justify-content:center;align-items:center;
+    flex-direction:column;opacity:0;pointer-events:none;transition:.6s;z-index:999;
+  }
+  .overlay.active{opacity:1;pointer-events:all}
+  .overlay h2{font-family:'Great Vibes';font-size:46px;color:#ffd6e0;margin:0}
+
+  /* Floating hearts */
+  .heart{position:absolute;animation:fall linear infinite;opacity:0.9}
+  @keyframes fall{0%{transform:translateY(-10vh)}100%{transform:translateY(110vh)}}
+
+  /* small responsive tweaks */
+  @media (max-width:420px){
+    .intro h1{font-size:46px}
+    h1.pageTitle{font-size:36px}
+    .reason{font-size:15px;padding:10px}
+    .timer{font-size:15px}
+  }
 </style>
 </head>
 <body>
-<h1>100 причин почему я тебя люблю ❤️</h1>
 
-<div class="timer" id="timer"></div>
+  <!-- Intro -->
+  <div class="intro" id="intro">
+    <h1>Полинка ❤️</h1>
+    <p>У меня есть для тебя кое-что...</p>
+  </div>
 
-<div class="container">
-<div class="reason">1. Ты самая красивая</div>
-<div class="reason">2. Твоя улыбка делает мой день ярче</div>
-<div class="reason">3. Мне спокойно рядом с тобой</div>
-<div class="reason">4. Ты невероятно милая</div>
-<div class="reason">5. Ты особенная</div>
-<div class="reason">6. Ты делаешь меня счастливым</div>
-<div class="reason">7. Ты вдохновляешь меня</div>
-<div class="reason">8. Ты добрая и нежная</div>
-<div class="reason">9. Ты невероятная личность</div>
-<div class="reason">10. Ты делаешь мир лучше</div>
-<div class="reason">11. Ты всегда поддерживаешь меня</div>
-<div class="reason">12. Ты заставляешь меня улыбаться</div>
-<div class="reason">13. Ты умеешь слушать</div>
-<div class="reason">14. Ты искренняя</div>
-<div class="reason">15. Ты умная</div>
-<div class="reason">16. Ты очень интересная</div>
-<div class="reason">17. Ты понимаешь меня без слов</div>
-<div class="reason">18. Ты всегда рядом, когда нужно</div>
-<div class="reason">19. Ты заботливая</div>
-<div class="reason">20. Ты удивительная</div>
-<div class="reason">21. Ты делаешь мою жизнь ярче</div>
-<div class="reason">22. Ты уникальная</div>
-<div class="reason">23. Ты настоящая</div>
-<div class="reason">24. Ты делаешь каждый день особенным</div>
-<div class="reason">25. Ты моя радость</div>
-<div class="reason">26. Ты моё вдохновение</div>
-<div class="reason">27. Ты заставляешь меня хотеть быть лучше</div>
-<div class="reason">28. Ты лучшая</div>
-<div class="reason">29. Ты прекрасная</div>
-<div class="reason">30. Ты невероятно добрая</div>
-<div class="reason">31. Ты искренняя со мной</div>
-<div class="reason">32. Ты даришь тепло</div>
-<div class="reason">33. Ты заставляешь меня смеяться</div>
-<div class="reason">34. Ты всегда поддержишь меня</div>
-<div class="reason">35. Ты замечательная</div>
-<div class="reason">36. Ты очень особенная</div>
-<div class="reason">37. Ты самая любимая</div>
-<div class="reason">38. Ты невероятно милая</div>
-<div class="reason">39. Ты моя опора</div>
-<div class="reason">40. Ты заставляешь меня чувствовать себя счастливым</div>
-<div class="reason">41. Ты умеешь радовать</div>
-<div class="reason">42. Ты понимаешь мои чувства</div>
-<div class="reason">43. Ты делаешь меня сильнее</div>
-<div class="reason">44. Ты даришь радость каждый день</div>
-<div class="reason">45. Ты светишься красотой</div>
-<div class="reason">46. Ты вдохновляешь меня каждый день</div>
-<div class="reason">47. Ты самая лучшая девушка на свете</div>
-<div class="reason">48. Ты моя поддержка</div>
-<div class="reason">49. Ты красива, когда улыбаешься</div>
-<div class="reason">50. Ты умеешь радоваться жизни</div>
-<div class="reason">51. Ты интересная и уникальная</div>
-<div class="reason">52. Ты замечательная девушка</div>
-<div class="reason">53. Ты моя радость</div>
-<div class="reason">54. Ты мой свет</div>
-<div class="reason">55. Ты делаешь мою жизнь лучше</div>
-<div class="reason">56. Ты умеешь удивлять</div>
-<div class="reason">57. Ты невероятно милая</div>
-<div class="reason">58. Ты нежная и заботливая</div>
-<div class="reason">59. Ты моя любимая</div>
-<div class="reason">60. Ты делаешь каждый день особенным</div>
-<div class="reason">61. Ты лучшая часть моего дня</div>
-<div class="reason">62. Ты делаешь меня счастливым</div>
-<div class="reason">63. Ты просто чудо</div>
-<div class="reason">64. Ты всегда в моём сердце</div>
-<div class="reason">65. Ты прекрасная внутри и снаружи</div>
-<div class="reason">66. Ты удивительная</div>
-<div class="reason">67. Ты делаешь мир красивее</div>
-<div class="reason">68. Ты вдохновляешь жить</div>
-<div class="reason">69. Ты заставляешь верить в любовь</div>
-<div class="reason">70. Ты невероятно важна для меня</div>
-<div class="reason">71. Ты моя радость и счастье</div>
-<div class="reason">72. Ты даришь мне покой и радость</div>
-<div class="reason">73. Ты чудо, которое произошло со мной</div>
-<div class="reason">74. Ты самая дорогая</div>
-<div class="reason">75. Ты моя любовь</div>
-<div class="reason">76. Ты моя вселенная</div>
-<div class="reason">77. Ты делаешь каждый день особенным</div>
-<div class="reason">78. Ты всегда рядом в мыслях</div>
-<div class="reason">79. Ты заставляешь сердце биться быстрее</div>
-<div class="reason">80. Ты делаешь меня счастливым</div>
-<div class="reason">81. Ты мой лучший человек</div>
-<div class="reason">82. Ты моя мечта</div>
-<div class="reason">83. Ты любимая</div>
-<div class="reason">84. Я люблю тебя</div>
-<div class="reason">85. Ты мой ангел</div>
-<div class="reason">86. Ты моё счастье</div>
-<div class="reason">87. Ты вдохновляешь меня каждый день</div>
-<div class="reason">88. Ты делаешь мир ярче</div>
-<div class="reason">89. Ты моя радость и нежность</div>
-<div class="reason">90. Ты моё всё</div>
-<div class="reason">91. Ты приносишь счастье</div>
-<div class="reason">92. Ты уникальная</div>
-<div class="reason">93. Ты удивительная</div>
-<div class="reason">94. Ты делаешь меня счастливым</div>
-<div class="reason">95. Ты настоящая любовь моей жизни</div>
-<div class="reason">96. Ты наполняешь моё сердце теплом</div>
-<div class="reason">97. Ты моя поддержка и опора</div>
-<div class="reason">98. Ты делаешь каждый день особенным</div>
-<div class="reason">99. Ты заставляешь меня мечтать</div>
-<div class="reason">100. Ты любовь всей моей жизни</div>
-</div>
+  <!-- Final overlay -->
+  <div class="overlay" id="overlay">
+    <h2>Ну всё… теперь ты только моя ❤️</h2>
+  </div>
 
-<button id="loveButton">Будешь моей?</button>
+  <h1 class="pageTitle">100 причин почему я тебя люблю ❤️</h1>
+  <div class="timer" id="timer">Мы вместе уже: —</div>
 
-<script>
-// Таймер
-const startDate = new Date("2026-02-22")
-function updateTimer(){
-const now = new Date()
-const diff = now - startDate
-const days = Math.floor(diff/(1000*60*60*24))
-const hours = Math.floor((diff/(1000*60*60))%24)
-const minutes = Math.floor((diff/(1000*60))%60)
-const seconds = Math.floor((diff/1000)%60)
-document.getElementById("timer").innerHTML = "Мы вместе уже ❤️ "+days+" дней "+hours+" часов "+minutes+" минут "+seconds+" секунд"
-}
-setInterval(updateTimer,1000)
-updateTimer()
+  <div class="container" id="reasons">
+    <!-- 1–100: жёсткая нумерация -->
+    <div class="reason" style="animation-delay:.02s">1. Ты самая красивая</div>
+    <div class="reason" style="animation-delay:.04s">2. Твоя улыбка делает мой день ярче</div>
+    <div class="reason" style="animation-delay:.06s">3. Мне спокойно рядом с тобой</div>
+    <div class="reason" style="animation-delay:.08s">4. Ты невероятно милая</div>
+    <div class="reason" style="animation-delay:.10s">5. Ты особенная</div>
+    <div class="reason" style="animation-delay:.12s">6. Ты делаешь меня счастливым</div>
+    <div class="reason" style="animation-delay:.14s">7. Ты вдохновляешь меня</div>
+    <div class="reason" style="animation-delay:.16s">8. Ты добрая и нежная</div>
+    <div class="reason" style="animation-delay:.18s">9. Ты невероятная личность</div>
+    <div class="reason" style="animation-delay:.20s">10. Ты делаешь мир лучше</div>
 
-// Летящие сердечки
-function createHeart(){
-let heart=document.createElement("div")
-heart.className="heart"
-heart.innerHTML="❤️"
-heart.style.left=Math.random()*100+"vw"
-heart.style.animationDuration=(3+Math.random()*5)+"s"
-heart.style.fontSize=(20+Math.random()*20)+"px"
-document.body.appendChild(heart)
-setTimeout(()=>{heart.remove()},7000)
-}
-setInterval(createHeart,200)
+    <div class="reason" style="animation-delay:.22s">11. Ты всегда поддерживаешь меня</div>
+    <div class="reason" style="animation-delay:.24s">12. Ты заставляешь меня улыбаться</div>
+    <div class="reason" style="animation-delay:.26s">13. Ты умеешь слушать</div>
+    <div class="reason" style="animation-delay:.28s">14. Ты искренняя</div>
+    <div class="reason" style="animation-delay:.30s">15. Ты умная</div>
+    <div class="reason" style="animation-delay:.32s">16. Ты очень интересная</div>
+    <div class="reason" style="animation-delay:.34s">17. Ты понимаешь меня без слов</div>
+    <div class="reason" style="animation-delay:.36s">18. Ты всегда рядом, когда нужно</div>
+    <div class="reason" style="animation-delay:.38s">19. Ты заботливая</div>
+    <div class="reason" style="animation-delay:.40s">20. Ты удивительная</div>
 
-// Кнопка "Будешь моей?"
-document.getElementById("loveButton").addEventListener("click", function(){
-this.innerText = "Ну всё теперь ты только моя"
-this.disabled = true
-})
-</script>
+    <div class="reason" style="animation-delay:.42s">21. Ты делаешь мою жизнь ярче</div>
+    <div class="reason" style="animation-delay:.44s">22. Ты уникальная</div>
+    <div class="reason" style="animation-delay:.46s">23. Ты настоящая</div>
+    <div class="reason" style="animation-delay:.48s">24. Ты делаешь каждый день особенным</div>
+    <div class="reason" style="animation-delay:.50s">25. Ты моя радость</div>
+    <div class="reason" style="animation-delay:.52s">26. Ты моё вдохновение</div>
+    <div class="reason" style="animation-delay:.54s">27. Ты заставляешь меня хотеть быть лучше</div>
+    <div class="reason" style="animation-delay:.56s">28. Ты лучшая</div>
+    <div class="reason" style="animation-delay:.58s">29. Ты прекрасная</div>
+    <div class="reason" style="animation-delay:.60s">30. Ты невероятно добрая</div>
 
-<!-- Музыка Careless Whisper -->
-<iframe width="0" height="0" src="https://www.youtube.com/embed/izGwDsrQ1eQ?autoplay=1&loop=1&playlist=izGwDsrQ1eQ" allow="autoplay"></iframe>
+    <div class="reason" style="animation-delay:.62s">31. Ты искренняя со мной</div>
+    <div class="reason" style="animation-delay:.64s">32. Ты даришь тепло</div>
+    <div class="reason" style="animation-delay:.66s">33. Ты заставляешь меня смеяться</div>
+    <div class="reason" style="animation-delay:.68s">34. Ты всегда поддержишь меня</div>
+    <div class="reason" style="animation-delay:.70s">35. Ты замечательная</div>
+    <div class="reason" style="animation-delay:.72s">36. Ты очень особенная</div>
+    <div class="reason" style="animation-delay:.74s">37. Ты самая любимая</div>
+    <div class="reason" style="animation-delay:.76s">38. Ты невероятно милая</div>
+    <div class="reason" style="animation-delay:.78s">39. Ты моя опора</div>
+    <div class="reason" style="animation-delay:.80s">40. Ты заставляешь меня чувствовать себя счастливым</div>
+
+    <div class="reason" style="animation-delay:.82s">41. Ты умеешь радовать</div>
+    <div class="reason" style="animation-delay:.84s">42. Ты понимаешь мои чувства</div>
+    <div class="reason" style="animation-delay:.86s">43. Ты делаешь меня сильнее</div>
+    <div class="reason" style="animation-delay:.88s">44. Ты даришь радость каждый день</div>
+    <div class="reason" style="animation-delay:.90s">45. Ты светишься красотой</div>
+    <div class="reason" style="animation-delay:.92s">46. Ты вдохновляешь меня каждый день</div>
+    <div class="reason" style="animation-delay:.94s">47. Ты самая лучшая девушка на свете</div>
+    <div class="reason" style="animation-delay:.96s">48. Ты моя поддержка</div>
+    <div class="reason" style="animation-delay:.98s">49. Ты красива, когда улыбаешься</div>
+    <div class="reason" style="animation-delay:1.00s">50. Ты умеешь радоваться жизни</div>
+
+    <div class="reason" style="animation-delay:1.02s">51. Ты интересная и уникальная</div>
+    <div class="reason" style="animation-delay:1.04s">52. Ты замечательная девушка</div>
+    <div class="reason" style="animation-delay:1.06s">53. Ты моя радость</div>
+    <div class="reason" style="animation-delay:1.08s">54. Ты мой свет</div>
+    <div class="reason" style="animation-delay:1.10s">55. Ты делаешь мою жизнь лучше</div>
+    <div class="reason" style="animation-delay:1.12s">56. Ты умеешь удивлять</div>
+    <div class="reason" style="animation-delay:1.14s">57. Ты невероятно милая</div>
+    <div class="reason" style="animation-delay:1.16s">58. Ты нежная и заботливая</div>
+    <div class="reason" style="animation-delay:1.18s">59. Ты моя любимая</div>
+    <div class="reason" style="animation-delay:1.20s">60. Ты делаешь каждый день особенным</div>
+
+    <div class="reason" style="animation-delay:1.22s">61. Ты лучшая часть моего дня</div>
+    <div class="reason" style="animation-delay:1.24s">62. Ты делаешь меня счастливым</div>
+    <div class="reason" style="animation-delay:1.26s">63. Ты просто чудо</div>
+    <div class="reason" style="animation-delay:1.28s">64. Ты всегда в моём сердце</div>
+    <div class="reason" style="animation-delay:1.30s">65. Ты прекрасная внутри и снаружи</div>
+    <div class="reason" style="animation-delay:1.32s">66. Ты удивительная</div>
+    <div class="reason" style="animation-delay:1.34s">67. Ты делаешь мир красивее</div>
+    <div class="reason" style="animation-delay:1.36s">68. Ты вдохновляешь жить</div>
+    <div class="reason" style="animation-delay:1.38s">69. Ты заставляешь верить в любовь</div>
+    <div class="reason" style="animation-delay:1.40s">70. Ты невероятно важна для меня</div>
+
+    <div class="reason" style="animation-delay:1.42s">71. Ты моя радость и счастье</div>
+    <div class="reason" style="animation-delay:1.44s">72. Ты даришь мне покой и радость</div>
+    <div class="reason" style="animation-delay:1.46s">73. Ты чудо, которое произошло со мной</div>
+    <div class="reason" style="animation-delay:1.48s">74. Ты самая дорогая</div>
+    <div class="reason" style="animation-delay:1.50s">75. Ты моя любовь</div>
+    <div class="reason" style="animation-delay:1.52s">76. Ты моя вселенная</div>
+    <div class="reason" style="animation-delay:1.54s">77. Ты делаешь каждый день особенным</div>
+    <div class="reason" style="animation-delay:1.56s">78. Ты всегда рядом в мыслях</div>
+    <div class="reason" style="animation-delay:1.58s">79. Ты заставляешь сердце биться быстрее</div>
+    <div class="reason" style="animation-delay:1.60s">80. Ты делаешь меня счастливым</div>
+
+    <div class="reason" style="animation-delay:1.62s">81. Ты мой лучший человек</div>
+    <div class="reason" style="animation-delay:1.64s">82. Ты моя мечта</div>
+    <div class="reason" style="animation-delay:1.66s">83. Ты любимая</div>
+    <div class="reason" style="animation-delay:1.68s">84. Я люблю тебя</div>
+    <div class="reason" style="animation-delay:1.70s">85. Ты мой ангел</div>
+    <div class="reason" style="animation-delay:1.72s">86. Ты моё счастье</div>
+    <div class="reason" style="animation-delay:1.74s">87. Ты вдохновляешь меня каждый день</div>
+    <div class="reason" style="animation-delay:1.76s">88. Ты делаешь мир ярче</div>
+    <div class="reason" style="animation-delay:1.78s">89. Ты моя радость и нежность</div>
+    <div class="reason" style="animation-delay:1.80s">90. Ты моё всё</div>
+
+    <div class="reason" style="animation-delay:1.82s">91. Ты приносишь счастье</div>
+    <div class="reason" style="animation-delay:1.84s">92. Ты уникальная</div>
+    <div class="reason" style="animation-delay:1.86s">93. Ты удивительная</div>
+    <div class="reason" style="animation-delay:1.88s">94. Ты делаешь меня счастливым</div>
+    <div class="reason" style="animation-delay:1.90s">95. Ты настоящая любовь моей жизни</div>
+    <div class="reason" style="animation-delay:1.92s">96. Ты наполняешь моё сердце теплом</div>
+    <div class="reason" style="animation-delay:1.94s">97. Ты моя поддержка и опора</div>
+    <div class="reason" style="animation-delay:1.96s">98. Ты делаешь каждый день особенным</div>
+    <div class="reason" style="animation-delay:1.98s">99. Ты заставляешь меня мечтать</div>
+    <div class="reason" style="animation-delay:2.00s">100. Ты — любовь всей моей жизни</div>
+  </div>
+
+  <button id="loveButton">Будешь моей?</button>
+
+  <script>
+    // hide intro after animation
+    setTimeout(()=>{ const i = document.getElementById('intro'); if(i) i.style.display='none'; },4000);
+
+    // timer since 22 Feb 2026
+    const startDate = new Date("2026-02-22");
+    function updateTimer(){
+      const now = new Date();
+      const diff = now - startDate;
+      const d = Math.floor(diff/(1000*60*60*24));
+      const h = Math.floor((diff/(1000*60*60))%24);
+      const m = Math.floor((diff/(1000*60))%60);
+      const s = Math.floor((diff/1000)%60);
+      document.getElementById('timer').innerText = "Мы вместе уже ❤️ "+d+" дней "+h+" часов "+m+" минут "+s+" секунд";
+    }
+    setInterval(updateTimer,1000);
+    updateTimer();
+
+    // staggered appearance: already set via inline delays (animation-delay)
+    // floating hearts
+    setInterval(()=>{
+      const heart = document.createElement('div');
+      heart.className='heart';
+      heart.innerHTML = '💖';
+      heart.style.left = Math.random()*100 + 'vw';
+      heart.style.fontSize = (18 + Math.random()*26) + 'px';
+      heart.style.animationDuration = (4 + Math.random()*4) + 's';
+      document.body.appendChild(heart);
+      setTimeout(()=>heart.remove(),8000);
+    },250);
+
+    // button -> final overlay + explosion
+    document.getElementById('loveButton').addEventListener('click', function(){
+      // change button text and disable
+      this.innerText = "Теперь ты официально моя❤️";
+      this.disabled = true;
+
+      // overlay
+      document.getElementById('overlay').classList.add('active');
+
+      // explosion hearts
+      for(let i=0;i<160;i++){
+        const e = document.createElement('div');
+        e.innerHTML = '❤️';
+        e.style.position='fixed';
+        e.style.left = Math.random()*100 + 'vw';
+        e.style.top = Math.random()*100 + 'vh';
+        e.style.fontSize = (18 + Math.random()*36) + 'px';
+        document.body.appendChild(e);
+        setTimeout(()=>e.remove(),2200);
+      }
+    });
+  </script>
+
+  <!-- background music (Careless Whisper) -->
+  <iframe width="0" height="0"
+    src="https://www.youtube.com/embed/izGwDsrQ1eQ?autoplay=1&loop=1&playlist=izGwDsrQ1eQ"
+    allow="autoplay">
+  </iframe>
+
 </body>
 </html>
