@@ -217,7 +217,8 @@
     setTimeout(()=>{ const i = document.getElementById('intro'); if(i) i.style.display='none'; },4000);
 
     // timer since 22 Feb 2026
-    const startDate = new Date("2026-02-22");
+    const startDate = new Date("2026-02-21");
+                              
     function updateTimer(){
       const now = new Date();
       const diff = now - startDate;
